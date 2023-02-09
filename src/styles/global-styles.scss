@@ -11,3 +11,22 @@ body {
 	font-family: $font-main;
   background-color: $background-color;
 }
+
+input, button {
+  font-family: $font-main;
+}
+
+a {
+  text-decoration: none;
+  color: $font-color;
+  transition: opacity 0.2s ease;
+
+  &:hover, &:focus {
+    text-decoration: underline;
+    opacity: 0.6;
+  }
+}
+
+li {
+  list-style: none;
+}

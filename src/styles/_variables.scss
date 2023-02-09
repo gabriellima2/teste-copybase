@@ -1,15 +1,21 @@
-$brand-color-50: #f3f6fa;
-$brand-color-100: #e9edf6;
-$brand-color-200: #d8deed;
-$brand-color-300: #bfc8e2;
-$brand-color-400: #b0b7d9;
-$brand-color-500: #8e93c6;
-$brand-color-600: #7677b5;
-$brand-color-700: #64649e;
-$brand-color-800: #535480;
-$brand-color-900: #474968;
+$brand-color-50: #f4f5f9;
+$brand-color-100: #d9dfee;
+$brand-color-200: #b2bddd;
+$brand-color-300: #8493c4;
+$brand-color-400: #5a6aa7;
+$brand-color-500: #404f8c;
+$brand-color-600: #313c70;
+$brand-color-700: #2b325a;
+$brand-color-800: #12141d;
+$brand-color-900: #090a10;
 
-$background-color: $brand-color-50;
-$font-color: $brand-color-900;
+$detail-color: #ffffff4a;
+
+$background-color: $brand-color-900;
+$font-color: $brand-color-50;
 
 $font-main: "Inter", sans-serif;
+
+$sm-screen: 468px;
+$md-screen: 768px;
+$lg-screen: 1024px;
