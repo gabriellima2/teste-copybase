@@ -13,8 +13,9 @@
   const router = useRouter();
 
   function handleSubmit() {
-    if (!searchValue.value) return;
-    router.push({ path: "/result", query: { q: searchValue.value } });
+    const formattedSearchValue = searchValue.value.trim();
+    if (!formattedSearchValue) return;
+    router.push({ path: "/result", query: { q: formattedSearchValue } });
   }
 
   function handleKeyDown({ key }: KeyboardEvent) {
