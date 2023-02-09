@@ -3,5 +3,13 @@
 </script>
 
 <template>
-  <RouterView />
+  <main class="content">
+    <RouterView />
+  </main>
 </template>
+
+<style lang="scss" scoped>
+  .content {
+    padding: 0px 12px;
+  }
+</style>
