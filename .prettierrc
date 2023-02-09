@@ -3,5 +3,6 @@
 	"singleQuote": false,
 	"arrowParens": "always",
 	"trailingComma": "es5",
-  "vueIndentScriptAndStyle": true
+  "vueIndentScriptAndStyle": true,
+  "tabWidth": 2
 }
