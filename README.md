@@ -14,6 +14,8 @@ Para cada um dos pokémons listados (o pesquisado e suas evoluções), gostaría
 
 Quando clicarmos em um pokémon listado, queremos listar suas principais características (hp, attack, defense, special attack, special defense e speed). Obviamente quanto mais informações você mostrar melhor (organizadas, usando princípios básicos de UI/UX).
 
+<p align="center"><a href="https://teste-copybase.vercel.app/">Acesse aqui</a></p>
+
 # O que foi feito?
 
 - Evoluções do Pokemon: Usei um algoritmo semelhante a iteração sobre uma Lista Ligada. Funciona bem para a grande maioria dos Pokemons, mas se o Pokemon (no caso o Oddish) tenha sub-evoluções acaba não funcionando corretamente.
