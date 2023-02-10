@@ -10,6 +10,7 @@ import type {
   PokemonDTO,
   PokemonEvolutionChainDTO,
 } from "../../dtos/pokemon-dtos";
+import { http } from "../http";
 
 const BASE_SPECIE_URL = "https://pokeapi.co/api/v2/pokemon-species/";
 const BASE_DETAILS_URL = "https://pokeapi.co/api/v2/pokemon/";
@@ -17,7 +18,7 @@ const BASE_DETAILS_URL = "https://pokeapi.co/api/v2/pokemon/";
 class PokeServices {
   public async getByName(name: string): GetByNameResponse {
     try {
-      const response = await fetch(`${BASE_DETAILS_URL}${name.trim()}`);
+      const response = await http.get(`${BASE_DETAILS_URL}${name.trim()}`);
       if (!response.ok) throw new Error(response.statusText);
 
       const data: PokemonDetailsDTO = await response.json();
@@ -67,7 +68,7 @@ class PokeServices {
 
   private async getSpeciesByName(name: string): GetSpeciesByNameResponse {
     try {
-      const response = await fetch(`${BASE_SPECIE_URL}${name.trim()}`);
+      const response = await http.get(`${BASE_SPECIE_URL}${name.trim()}`);
       if (!response.ok) throw new Error(response.statusText);
 
       const data: PokemonDTO = await response.json();
@@ -81,7 +82,7 @@ class PokeServices {
     evolutionChain: string
   ): GetEvolutionChainResponse {
     try {
-      const response = await fetch(evolutionChain);
+      const response = await http.get(evolutionChain);
       if (!response.ok) throw new Error(response.statusText);
 
       const data: PokemonEvolutionChainDTO = await response.json();
@@ -91,7 +92,7 @@ class PokeServices {
 
       // Semelhante a navegação de uma Lista Encadeada! Navegamos em toda a cadeia de evolução, mas somente de forma linear
       while (Object.keys(chain).length > 1) {
-        const evolutionChainResponse = await fetch(chain.species.url);
+        const evolutionChainResponse = await http.get(chain.species.url);
         if (!evolutionChainResponse.ok) throw new Error(response.statusText);
 
         evolutionChainPromises.push(evolutionChainResponse.json());
