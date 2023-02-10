@@ -1,4 +1,4 @@
-export interface PreviewPokeDTO {
+export interface PokemonOverviewDTO {
   id: number;
   name: string;
   sprites: {

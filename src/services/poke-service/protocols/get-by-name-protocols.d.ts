@@ -1,6 +1,3 @@
-export interface GetByNameSpecieResponse {
-  name: string;
-  evolution_chain: {
-    url: string;
-  };
-}
+import { DetailsPokeDTO } from "../../../dtos/pokemon-dtos/pokemon-details-dto";
+
+export type GetByNameResponse = Promise<DetailsPokeDTO | string>;
