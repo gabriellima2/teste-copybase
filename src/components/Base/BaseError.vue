@@ -13,7 +13,7 @@
 </script>
 
 <template>
-  <h1 class="error">
+  <h1 class="error" role="alert">
     <span v-if="props.hasEmoji">😞</span> {{ props.message }}
   </h1>
   <BaseButton
