@@ -16,9 +16,9 @@ Quando clicarmos em um pokémon listado, queremos listar suas principais caracte
 
 # O que foi feito?
 
-- Evoluções do Pokemon: Usei um algoritmo semelhante a iteração sobre uma Lista Ligada, mas se o Pokemon (no caso o Oddish) tenha sub-evoluções acaba não funcionando corretamente.
+- Evoluções do Pokemon: Usei um algoritmo semelhante a iteração sobre uma Lista Ligada. Funciona bem para a grande maioria dos Pokemons, mas se o Pokemon (no caso o Oddish) tenha sub-evoluções acaba não funcionando corretamente.
 - Componentização.
-- Separação de regras-de-negócio e serviços.
+- Separação de regras-de-negócio e serviços externos.
 - Trabalhado com roteamento dinâmico e estático usando [Vue Router](https://router.vuejs.org/).
 - Estilos criados com [Scss](https://sass-lang.com/install) usando o padrão [BEM](https://getbem.com/introduction/).
 - HTML semântico e com atributos de acessiblidade.
