@@ -12,7 +12,7 @@
 
   const { query } = useRoute();
   const { data, error, isLoading } = useFetch<PokemonOverviewDTO[]>(() =>
-    pokeServices.getAll(query.q as string)
+    pokeServices.getAll((query.q as string).toLocaleLowerCase())
   );
 </script>
 

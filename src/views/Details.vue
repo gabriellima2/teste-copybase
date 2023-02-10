@@ -1,14 +1,17 @@
 <script lang="ts" setup>
   import { useRoute } from "vue-router";
-  import BaseError from "../components/Base/BaseError.vue";
+
+  import { useFetch } from "../composables/useFetch";
+
   import BaseLoading from "../components/Base/BaseLoading.vue";
   import PokeDetails from "../components/Poke/PokeDetails.vue";
-  import { useFetch } from "../composables/useFetch";
+  import BaseError from "../components/Base/BaseError.vue";
+
   import { pokeServices } from "../services/poke-service";
 
   const { params } = useRoute();
   const { data, error, isLoading } = useFetch(() =>
-    pokeServices.getByName(params.id as string)
+    pokeServices.getByName((params.id as string).toLocaleLowerCase())
   );
 </script>
 

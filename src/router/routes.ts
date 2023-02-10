@@ -9,4 +9,5 @@ export const routes: RouteRecordRaw[] = [
   { path: "/", name: "Home", component: Home },
   { path: "/result", name: "SearchResult", component: SearchResult },
   { path: "/details/:id", name: "Details", component: Details },
+  { path: "/:pathMatch(.*)*", component: Home },
 ];

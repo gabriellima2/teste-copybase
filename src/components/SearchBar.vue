@@ -13,7 +13,7 @@
   const router = useRouter();
 
   function handleSubmit() {
-    const formattedSearchValue = searchValue.value.trim();
+    const formattedSearchValue = searchValue.value.trim().toLowerCase();
     if (!formattedSearchValue) return;
     router.push({ path: "/result", query: { q: formattedSearchValue } });
   }

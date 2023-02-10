@@ -28,8 +28,9 @@ class PokeServices {
     }
   }
 
-  public async getAll(name: string): GetAllResponse {
+  public async getAll(name?: string): GetAllResponse {
     try {
+      if (!name) throw new Error("Query field is empty");
       const pokemonSpecies = await this.getSpeciesByName(name);
       if (!pokemonSpecies) throw new Error();
 
