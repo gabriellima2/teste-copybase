@@ -4,7 +4,4 @@ export interface PokemonOverviewDTO {
   sprites: {
     front_default: string;
   };
-  evolution_chain: {
-    url: string;
-  };
 }

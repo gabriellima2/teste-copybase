@@ -81,7 +81,7 @@ class PokeServices {
       if (typeof pokemonSpeciesEvolutions[0] === "string")
         throw new Error(pokemonSpeciesEvolutions[0]);
 
-      return [...(pokemonSpeciesEvolutions as PokemonDetailsDTO[])];
+      return [...(pokemonSpeciesEvolutions as PokemonOverviewDTO[])];
     } catch (err) {
       return (err as Error).message;
     }
