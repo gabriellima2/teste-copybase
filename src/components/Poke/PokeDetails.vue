@@ -97,7 +97,6 @@
   }
   .poke-stats__title {
     font-size: 1.2rem;
-    font-weight: 500;
   }
   .poke-stats__list {
     display: grid;

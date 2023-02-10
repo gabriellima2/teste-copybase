@@ -3,7 +3,7 @@
 </script>
 
 <template>
-  <section class="home">
+  <div class="home">
     <SearchBar class="form">
       <header class="header">
         <img src="../assets/img/poke-ball.png" alt="" class="header__img" />
@@ -19,15 +19,13 @@
     >
       <small>&copy; Gabriel Lima</small>
     </a>
-  </section>
+  </div>
 </template>
 
 <style lang="scss" scoped>
   @import "../styles/main";
   .home {
     @include flex-center(column);
-    height: 100vh;
-    min-height: 300px;
     gap: 12px;
   }
   .form {
@@ -48,7 +46,6 @@
   }
   .header__title {
     font-size: 1.4rem;
-    font-weight: 500;
   }
 
   @media screen and (min-width: $md-screen) {

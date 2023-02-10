@@ -23,7 +23,6 @@
   }
   .poke-stat__name {
     font-size: 0.9rem;
-    font-weight: 500;
     text-transform: capitalize;
     opacity: 0.7;
     order: 1;

@@ -9,7 +9,9 @@
 </template>
 
 <style lang="scss" scoped>
+  @import "./styles/main";
   .content {
+    @include center-full-screen(column);
     padding: 0px 12px;
   }
 </style>
