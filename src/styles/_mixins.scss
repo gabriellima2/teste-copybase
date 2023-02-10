@@ -21,3 +21,10 @@
     color: $detail-color;
   }
 }
+
+@mixin center-full-screen($direction) {
+  @include flex-center($direction);
+
+  height: 100vh;
+  min-height: 200px;
+}
