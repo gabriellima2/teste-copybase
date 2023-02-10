@@ -23,25 +23,25 @@
 
   @keyframes jump {
     0% {
-      transform: translateY(-50%);
+      transform: translate(-50%, -50%);
     }
     50% {
-      transform: translateY(-150%);
+      transform: translate(-50%, -150%);
     }
     55% {
-      transform: translateY(-150%) rotate(15deg);
+      transform: translate(-50%, -150%) rotate(15deg);
     }
     60% {
-      transform: translateY(-150%) rotate(-15deg);
+      transform: translate(-50%, -150%) rotate(-15deg);
     }
     65% {
-      transform: translateY(-150%) rotate(15deg);
+      transform: translate(-50%, -150%) rotate(15deg);
     }
     70% {
-      transform: translateY(-150%) rotate(-15deg);
+      transform: translate(-50%, -150%) rotate(-15deg);
     }
     100% {
-      transform: translateY(-50%);
+      transform: translate(-50%, -50%);
     }
   }
 </style>
