@@ -1,4 +1,6 @@
 <script lang="ts" setup>
+  import { computed } from "vue";
+
   import PokeStat from "../Poke/PokeStat.vue";
   import type { PokemonDetailsDTO } from "../../dtos/pokemon-dtos";
 
@@ -7,6 +9,8 @@
   };
 
   const props = defineProps<PokeDetailsProps>();
+  const formattedWeight = computed(() => `${props.pokemon.weight / 10} Kg`);
+  const formattedHeight = computed(() => `${props.pokemon.height * 10} CM`);
 </script>
 
 <template>
@@ -18,7 +22,19 @@
         class="poke-overview__image"
       />
 
-      <h1 class="poke-overview__name">{{ props.pokemon.name }}</h1>
+      <div class="poke-texts">
+        <h1 class="poke-texts__name">
+          {{ props.pokemon.name }}
+        </h1>
+        <footer class="poke-complementary-info">
+          <small class="poke-complementary-info__text">
+            {{ formattedHeight }}
+          </small>
+          <small class="poke-complementary-info__text">
+            {{ formattedWeight }}
+          </small>
+        </footer>
+      </div>
     </section>
     <section class="poke-stats">
       <h1 class="poke-stats__title">Estatísticas</h1>
@@ -55,9 +71,21 @@
     width: 130px;
     height: 130px;
   }
-  .poke-overview__name {
+  .poke-texts {
+    @include flex-center(column);
+    gap: 8px;
+  }
+  .poke-texts__name {
     text-transform: capitalize;
     font-weight: 600;
+  }
+  .poke-complementary-info {
+    @include flex-center(row);
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  .poke-complementary-info__text {
+    opacity: 0.8;
   }
   .poke-stats {
     display: flex;
