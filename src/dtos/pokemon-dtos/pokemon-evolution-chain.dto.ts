@@ -3,6 +3,6 @@ interface ChainLink {
   evolves_to: ChainLink[];
 }
 
-export interface GetEvolutionChainResponse {
+export interface PokemonEvolutionChainDTO {
   chain: ChainLink;
 }

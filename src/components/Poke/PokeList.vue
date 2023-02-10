@@ -14,7 +14,7 @@
 
   const props = defineProps<PokemonListProps>();
   const { data, error, isLoading } = useFetch<PokemonOverviewDTO[]>(() =>
-    pokeServices.getPokemon(props.pokeName)
+    pokeServices.getAll(props.pokeName)
   );
 
   console.log(data);

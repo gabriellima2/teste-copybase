@@ -1,41 +1,68 @@
 import type {
   GetEvolutionChainResponse,
+  GetPokemonEvolutionResponse,
   GetByNameResponse,
   GetSpeciesByNameResponse,
+  GetAllResponse,
 } from "./protocols";
 import type {
   PokemonDetailsDTO,
   PokemonDTO,
-  PokemonOverviewDTO,
+  PokemonEvolutionChainDTO,
 } from "../../dtos/pokemon-dtos";
 
 const BASE_SPECIE_URL = "https://pokeapi.co/api/v2/pokemon-species/";
 const BASE_DETAILS_URL = "https://pokeapi.co/api/v2/pokemon/";
 
 class PokeServices {
-  private async getEvolutionChain(
-    evolutionChain: string
-  ): Promise<Pick<PokemonDTO, "name">[]> {
-    const response = await fetch(evolutionChain);
-    if (!response.ok) throw new Error(response.statusText);
+  public async getByName(name: string): GetByNameResponse {
+    try {
+      const response = await fetch(`${BASE_DETAILS_URL}${name.trim()}`);
+      if (!response.ok) throw new Error(response.statusText);
 
-    const data: GetEvolutionChainResponse | undefined = await response.json();
-    if (!data) throw new Error("Not Found");
-
-    const evolutionChainPromises: Promise<PokemonOverviewDTO>[] = [];
-    let node = data.chain.evolves_to;
-
-    // Semelhante a navegação de uma Lista Encadeada! Navegamos em todas as cadeias de evolução
-    while (node.length > 0) {
-      const evolutionChainResponse = await fetch(node[0].species.url);
-      if (!evolutionChainResponse.ok) throw new Error(response.statusText);
-
-      evolutionChainPromises.push(evolutionChainResponse.json());
-      node = node[0].evolves_to;
+      const data: PokemonDetailsDTO = await response.json();
+      return data;
+    } catch (err) {
+      return (err as Error).message;
     }
+  }
 
-    const evolutionChainData = await Promise.all(evolutionChainPromises);
-    return evolutionChainData;
+  public async getAll(name: string): GetAllResponse {
+    try {
+      const pokemonSpecies = await this.getSpeciesByName(name);
+      if (!pokemonSpecies) throw new Error();
+
+      const pokemonEvolutionChain = await this.getPokemonEvolutionChain(
+        pokemonSpecies.evolution_chain.url
+      );
+      if (!pokemonEvolutionChain) throw new Error();
+
+      const pokemonEvolution = await this.getPokemonEvolution(
+        pokemonEvolutionChain
+      );
+      if (!pokemonEvolution) throw new Error();
+
+      return [...pokemonEvolution];
+    } catch (err) {
+      return (err as Error).message;
+    }
+  }
+
+  private async getPokemonEvolution(
+    evolutionsChain: Pick<PokemonDTO, "name">[]
+  ): GetPokemonEvolutionResponse {
+    try {
+      const pokemonEvolutionsPromise = evolutionsChain.map((evolution) =>
+        this.getByName(evolution.name)
+      );
+      const pokemonEvolutions = await Promise.all(pokemonEvolutionsPromise);
+      if (typeof pokemonEvolutions[0] === "string")
+        throw new Error(pokemonEvolutions[0]);
+
+      return pokemonEvolutions as PokemonDetailsDTO[];
+    } catch (err) {
+      return;
+    }
   }
 
   private async getSpeciesByName(name: string): GetSpeciesByNameResponse {
@@ -46,44 +73,35 @@ class PokeServices {
       const data: PokemonDTO = await response.json();
       return data;
     } catch (err) {
-      return (err as Error).message;
+      return;
     }
   }
 
-  public async getByName(name: string): GetByNameResponse {
+  private async getPokemonEvolutionChain(
+    evolutionChain: string
+  ): GetEvolutionChainResponse {
     try {
-      const response = await fetch(`${BASE_DETAILS_URL}${name}`);
+      const response = await fetch(evolutionChain);
       if (!response.ok) throw new Error(response.statusText);
 
-      const data: PokemonDetailsDTO = await response.json();
-      return data;
+      const data: PokemonEvolutionChainDTO = await response.json();
+
+      const evolutionChainPromises: Promise<PokemonDTO>[] = [];
+      let chain = data.chain;
+
+      // Semelhante a navegação de uma Lista Encadeada! Navegamos em toda a cadeia de evolução, mas somente de forma linear
+      while (Object.keys(chain).length > 1) {
+        const evolutionChainResponse = await fetch(chain.species.url);
+        if (!evolutionChainResponse.ok) throw new Error(response.statusText);
+
+        evolutionChainPromises.push(evolutionChainResponse.json());
+        chain = chain.evolves_to[0] || {};
+      }
+
+      const evolutionChainData = await Promise.all(evolutionChainPromises);
+      return evolutionChainData;
     } catch (err) {
-      return (err as Error).message;
-    }
-  }
-
-  public async getPokemon(
-    name: string
-  ): Promise<PokemonOverviewDTO[] | string> {
-    try {
-      const pokemonSpecies = await this.getSpeciesByName(name);
-      if (typeof pokemonSpecies === "string") throw new Error(pokemonSpecies);
-
-      const pokemonSpeciesEvolutionsChain = await this.getEvolutionChain(
-        pokemonSpecies.evolution_chain.url
-      );
-      const pokemonSpeciesEvolutionsPromise = pokemonSpeciesEvolutionsChain.map(
-        (pokeEvo) => this.getByName(pokeEvo.name)
-      );
-      const pokemonSpeciesEvolutions = await Promise.all(
-        pokemonSpeciesEvolutionsPromise
-      );
-      if (typeof pokemonSpeciesEvolutions[0] === "string")
-        throw new Error(pokemonSpeciesEvolutions[0]);
-
-      return [...(pokemonSpeciesEvolutions as PokemonOverviewDTO[])];
-    } catch (err) {
-      return (err as Error).message;
+      return;
     }
   }
 }
