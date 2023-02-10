@@ -2,6 +2,7 @@
   import { ref } from "vue";
   import { useRouter } from "vue-router";
 
+  import BaseButton from "./Base/BaseButton.vue";
   import BaseInput from "./Base/BaseInput.vue";
 
   type SearchBarProps = {
@@ -36,14 +37,9 @@
           class="container__field"
         />
       </label>
-      <button
-        type="submit"
-        title="Pesquisar"
-        @click.prevent="handleSubmit"
-        class="container__search-button"
-      >
+      <BaseButton type="submit" title="Pesquisar" @click.prevent="handleSubmit">
         🔎
-      </button>
+      </BaseButton>
     </div>
   </form>
 </template>
@@ -60,19 +56,5 @@
     border: none;
     padding: 10px;
     border-radius: 0px;
-  }
-  .container__search-button {
-    text-decoration: none;
-    padding: 10px;
-    border-radius: 4px;
-    transition: background-color 0.2s ease;
-    background: none;
-    border: none;
-    cursor: pointer;
-
-    &:hover,
-    &:focus {
-      background-color: $detail-color;
-    }
   }
 </style>
