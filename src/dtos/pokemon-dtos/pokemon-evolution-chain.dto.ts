@@ -1,5 +1,5 @@
 interface ChainLink {
-  species: { url: string };
+  species: { name: string };
   evolves_to: ChainLink[];
 }
 

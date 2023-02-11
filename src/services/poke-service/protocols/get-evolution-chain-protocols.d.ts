@@ -1,5 +1,5 @@
-import type { PokemonDTO } from "../../../dtos/pokemon-dtos";
+import type { PokemonEvolutionChainDTO } from "../../../dtos/pokemon-dtos";
 
 export type GetEvolutionChainResponse = Promise<
-  Pick<PokemonDTO, "name">[] | undefined
+  string | PokemonEvolutionChainDTO
 >;
