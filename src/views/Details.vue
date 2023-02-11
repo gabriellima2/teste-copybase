@@ -38,7 +38,7 @@
     width: 100%;
   }
   .poke-error {
-    @include flex-center(column);
+    @include center-full-screen(column);
     gap: 16px;
   }
 </style>

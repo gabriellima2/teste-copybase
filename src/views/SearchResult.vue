@@ -38,7 +38,7 @@
     padding-bottom: 32px;
   }
   .poke-error {
-    @include flex-center(column);
+    @include center-full-screen(column);
     gap: 16px;
   }
 
