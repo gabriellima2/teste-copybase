@@ -20,7 +20,7 @@
   <BaseLoading v-if="isLoading" />
   <div v-else-if="error" class="poke-error">
     <BaseError
-      :message="error || 'Ocorreu um erro'"
+      :message="error"
       :has-go-back-button="true"
       :has-emoji="true"
       :full-screen="true"

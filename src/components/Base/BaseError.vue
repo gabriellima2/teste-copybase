@@ -13,20 +13,27 @@
 </script>
 
 <template>
-  <h1 class="error" role="alert">
-    <span v-if="props.hasEmoji">😞</span> {{ props.message }}
-  </h1>
-  <BaseButton
-    v-if="props.hasGoBackButton"
-    @click="router.go(-1)"
-    type="button"
-    title="Voltar para página anterior"
-    >&#9664; Voltar</BaseButton
-  >
+  <div class="content-error">
+    <h1 class="content-error__title" role="alert">
+      <span v-if="props.hasEmoji">😞</span> {{ props.message }}
+    </h1>
+    <BaseButton
+      v-if="props.hasGoBackButton"
+      @click="router.go(-1)"
+      type="button"
+      title="Voltar para página anterior"
+      >&#9664; Voltar</BaseButton
+    >
+  </div>
 </template>
 
 <style lang="scss" scoped>
-  .error {
+  @import "../../styles/main";
+  .content-error {
+    @include flex-center(column);
+    gap: 32px;
+  }
+  .content-error__title {
     font-size: 1.2rem;
     font-weight: 500;
   }
