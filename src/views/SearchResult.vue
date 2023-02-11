@@ -26,18 +26,27 @@
       :full-screen="true"
     />
   </div>
-  <PokeList
-    v-else-if="data"
-    :poke-name="(query.q as string)"
-    :pokemons="data"
-  />
+  <div v-else-if="data" class="search-result-content">
+    <PokeList :poke-name="(query.q as string)" :pokemons="data" />
+  </div>
 </template>
 
 <style lang="scss" scoped>
   @import "../styles/main";
-
+  .search-result-content {
+    padding-top: 32px;
+    padding-bottom: 32px;
+  }
   .poke-error {
     @include flex-center(column);
     gap: 16px;
+  }
+
+  @media screen and (min-width: $md-screen) {
+    .search-result-content {
+      max-width: 1300px;
+      padding-top: 0px;
+      padding-bottom: 0px;
+    }
   }
 </style>

@@ -25,13 +25,13 @@
 <style lang="scss" scoped>
   @import "../styles/main";
   .home {
-    @include flex-center(column);
+    @include center-full-screen(column);
     gap: 12px;
   }
   .form {
     @include flex-center(column);
     width: 100%;
-    padding: 36px;
+    padding: 36px 12px;
     border-radius: 8px;
     gap: 28px;
     background-color: #12141d;
@@ -51,6 +51,7 @@
   @media screen and (min-width: $md-screen) {
     .form {
       max-width: 400px;
+      padding: 36px;
     }
   }
 </style>

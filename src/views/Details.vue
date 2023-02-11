@@ -33,6 +33,8 @@
 <style lang="scss" scoped>
   @import "../styles/main";
   .poke-container {
+    @include center-full-screen(column);
+    min-height: 600px;
     width: 100%;
   }
   .poke-error {

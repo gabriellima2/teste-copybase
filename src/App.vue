@@ -11,7 +11,13 @@
 <style lang="scss" scoped>
   @import "./styles/main";
   .content {
-    @include center-full-screen(column);
     padding: 0px 12px;
+  }
+
+  @media screen and (min-width: $md-screen) {
+    .content {
+      @include center-full-screen(row);
+      min-height: 700px;
+    }
   }
 </style>
