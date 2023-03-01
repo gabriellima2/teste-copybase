@@ -1,4 +1,4 @@
-# Teste Técnico Copybase
+# Teste Técnico
 
 Construir uma aplicação para listagem e busca de pokemons. É uma aplicação simples, onde iremos buscar por um determinado pokémon, pelo seu nome, para termos acesso às suas propriedades requisitadas através da [PokeAPI v2](https://pokeapi.co/docs/v2).
 
@@ -13,8 +13,6 @@ Para cada um dos pokémons listados (o pesquisado e suas evoluções), gostaría
 <br />
 
 Quando clicarmos em um pokémon listado, queremos listar suas principais características (hp, attack, defense, special attack, special defense e speed). Obviamente quanto mais informações você mostrar melhor (organizadas, usando princípios básicos de UI/UX).
-
-<p align="center"><a href="https://teste-copybase.vercel.app/">Acesse aqui</a></p>
 
 # O que foi feito?
 
